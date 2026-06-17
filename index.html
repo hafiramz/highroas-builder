@@ -4,639 +4,649 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HighROAS.ae — World-Class Performance Marketing Dubai</title>
+<title>HighROAS.ae — We Don't Run Ads. We Print Revenue.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --black:#080808;
-  --dark:#0D0D0D;
-  --card:#101010;
-  --card2:#141414;
+  --dark:#0e0e0e;
+  --card:#111111;
   --gold:#C9A84C;
-  --gold-light:#E8C76A;
-  --gold-glow:rgba(201,168,76,0.3);
+  --gold2:#E8C76A;
+  --gold3:#A07830;
   --blue:#0EA5E9;
-  --blue-dark:#0284C7;
-  --blue-glow:rgba(14,165,233,0.3);
-  --white:#FFFFFF;
-  --gray:#666666;
-  --border:rgba(201,168,76,0.12);
-  --border2:rgba(255,255,255,0.06);
+  --blue2:#38BDF8;
+  --white:#ffffff;
+  --gray:#777777;
+  --border:rgba(201,168,76,0.15);
+  --border2:rgba(255,255,255,0.07);
+  --glass:rgba(255,255,255,0.04);
 }
-html{scroll-behavior:smooth;font-size:16px;}
+html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--white);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;cursor:none;}
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-track{background:var(--black);}
-::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--blue));border-radius:2px;}
-::selection{background:var(--gold-glow);color:var(--gold);}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--blue));}
+::selection{background:rgba(201,168,76,0.3);color:var(--gold);}
 
 /* CURSOR */
-#cur{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:99999;transition:width .2s,height .2s,background .2s;}
-#cur2{width:40px;height:40px;border:1.5px solid rgba(201,168,76,.4);border-radius:50%;position:fixed;pointer-events:none;z-index:99998;transition:all .08s linear;}
-#cur.big{width:60px;height:60px;background:transparent;border:1.5px solid var(--gold);}
+.c1{width:10px;height:10px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;}
+.c2{width:38px;height:38px;border:1px solid rgba(201,168,76,0.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all 0.1s linear;}
+body:hover .c1{opacity:1;}
 
 /* NAV */
-#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 64px;height:72px;display:flex;align-items:center;justify-content:space-between;transition:all .5s;}
-#nav.scrolled{background:rgba(8,8,8,.95);backdrop-filter:blur(30px);border-bottom:1px solid var(--border);}
-.nav-logo{font-size:1.45rem;font-weight:900;letter-spacing:-1px;text-decoration:none;}
-.nav-logo em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.nav-logo span{color:var(--blue);}
-.nav-links{display:flex;gap:36px;list-style:none;}
-.nav-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.875rem;font-weight:500;letter-spacing:.3px;transition:color .3s;position:relative;}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;transition:all .4s;}
+nav.scrolled{background:rgba(8,8,8,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-size:1.4rem;font-weight:900;letter-spacing:-0.5px;text-decoration:none;color:var(--white);}
+.logo span{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.logo em{color:var(--blue);font-style:normal;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color .3s;}
 .nav-links a:hover{color:var(--white);}
-.nav-links a:hover::after{width:100%;}
-.nav-cta{background:linear-gradient(135deg,var(--gold),#A07830);color:var(--black)!important;padding:10px 26px;border-radius:8px;font-weight:800!important;letter-spacing:.3px;transition:all .3s!important;}
-.nav-cta::after{display:none!important;}
-.nav-cta:hover{box-shadow:0 8px 30px var(--gold-glow);transform:translateY(-2px);}
-#nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:100;}
-#nav-toggle span{width:22px;height:1.5px;background:var(--gold);display:block;transition:all .3s;}
+.nav-btn{background:linear-gradient(135deg,var(--gold),var(--gold3));color:var(--black)!important;padding:10px 24px;border-radius:8px;font-weight:800!important;transition:all .3s!important;}
+.nav-btn:hover{box-shadow:0 8px 30px rgba(201,168,76,0.45);transform:translateY(-2px);}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hbg span{width:22px;height:2px;background:var(--gold);border-radius:2px;display:block;transition:all .3s;}
+.mob-menu{display:none;position:fixed;inset:0;background:rgba(8,8,8,0.98);backdrop-filter:blur(20px);z-index:499;flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-size:1.8rem;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:-1px;transition:color .3s;}
+.mob-menu a:hover{color:var(--gold);}
 
 /* HERO */
-#hero{position:relative;width:100%;height:100vh;min-height:700px;display:flex;align-items:center;overflow:hidden;}
-#hero-canvas{position:absolute;inset:0;width:100%;height:100%;}
-.hero-fog{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(201,168,76,.06) 0%,transparent 55%),radial-gradient(ellipse at 75% 25%,rgba(14,165,233,.07) 0%,transparent 50%),linear-gradient(180deg,transparent 60%,var(--black) 100%);}
-.hero-wrap{position:relative;z-index:5;max-width:1400px;margin:0 auto;padding:0 64px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-.h-pill{display:inline-flex;align-items:center;gap:8px;padding:7px 18px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:100px;font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:28px;}
-.h-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:blink 2s infinite;}
-@keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(1.5);}}
-.hero-h1{font-size:clamp(3rem,5.5vw,5.5rem);font-weight:900;line-height:1.0;letter-spacing:-3px;margin-bottom:28px;}
-.hero-h1 .g{background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 50%,var(--gold) 100%);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite;}
-.hero-h1 .b{color:var(--blue);}
-@keyframes shimmer{0%{background-position:0%}100%{background-position:200%}}
-.hero-p{font-family:'Inter',sans-serif;font-size:1.05rem;color:rgba(255,255,255,.55);line-height:1.75;max-width:490px;margin-bottom:44px;}
-.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:56px;}
-.btn-gold{display:inline-flex;align-items:center;gap:10px;padding:17px 38px;background:linear-gradient(135deg,var(--gold),#A07830);color:var(--black);border-radius:10px;font-weight:800;font-size:1rem;border:none;cursor:pointer;text-decoration:none;transition:all .3s;letter-spacing:.2px;}
-.btn-gold:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(201,168,76,.4);}
-.btn-ghost{display:inline-flex;align-items:center;gap:10px;padding:17px 38px;background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.15);border-radius:10px;font-weight:600;font-size:1rem;cursor:pointer;text-decoration:none;transition:all .3s;}
-.btn-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-4px);box-shadow:0 10px 30px var(--blue-glow);}
-.hero-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
-.kpi{background:var(--card);padding:22px 20px;text-align:center;}
-.kpi-n{font-size:2.2rem;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.kpi-l{font-size:.75rem;color:var(--gray);margin-top:5px;letter-spacing:.3px;}
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;}
+#c3d{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+.hero-fog{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 20% 60%,rgba(201,168,76,0.07) 0%,transparent 60%),radial-gradient(ellipse 60% 60% at 80% 20%,rgba(14,165,233,0.07) 0%,transparent 55%),linear-gradient(to bottom,transparent 50%,var(--black) 100%);z-index:1;}
+.hero-inner{position:relative;z-index:2;max-width:1300px;margin:0 auto;padding:100px 60px 80px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:70px;align-items:center;width:100%;}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:100px;font-size:0.75rem;font-weight:700;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:26px;}
+.hero-pill-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(1.6);}}
+.hero-h1{font-size:clamp(3.2rem,5.5vw,5.8rem);font-weight:900;line-height:0.98;letter-spacing:-3px;margin-bottom:26px;}
+.hero-h1 .line1{display:block;color:var(--white);}
+.hero-h1 .line2{display:block;color:var(--white);}
+.hero-h1 .line3{display:block;}
+.hero-h1 .line4{display:block;color:var(--blue);}
+.g-text{background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 50%,var(--gold) 100%);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shine 4s linear infinite;}
+@keyframes shine{0%{background-position:0%}100%{background-position:200%}}
+.hero-desc{font-family:'Inter',sans-serif;font-size:1.05rem;color:rgba(255,255,255,0.5);line-height:1.78;max-width:500px;margin-bottom:42px;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px;}
+.btn-g{display:inline-flex;align-items:center;gap:9px;padding:16px 36px;background:linear-gradient(135deg,var(--gold),var(--gold3));color:var(--black);border-radius:10px;font-weight:800;font-size:0.95rem;text-decoration:none;border:none;cursor:pointer;transition:all .3s;}
+.btn-g:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(201,168,76,0.42);}
+.btn-o{display:inline-flex;align-items:center;gap:9px;padding:16px 36px;background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.15);border-radius:10px;font-weight:600;font-size:0.95rem;text-decoration:none;cursor:pointer;transition:all .3s;}
+.btn-o:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-4px);}
+.hero-stats-row{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.hs-item{padding:20px 18px;text-align:center;background:rgba(255,255,255,0.02);border-right:1px solid var(--border);}
+.hs-item:last-child{border-right:none;}
+.hs-num{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+.hs-lbl{font-size:0.72rem;color:var(--gray);margin-top:5px;letter-spacing:0.3px;}
 
-/* RIGHT PANEL */
+/* LIVE CARD */
 .hero-right{position:relative;}
-.live-card{background:rgba(14,14,14,.9);border:1px solid var(--border);border-radius:20px;padding:30px;backdrop-filter:blur(30px);position:relative;overflow:hidden;}
-.live-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--blue),transparent);}
-.lc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;}
-.lc-label{font-size:.8rem;color:var(--gray);font-weight:500;}
-.live-badge{display:flex;align-items:center;gap:6px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);padding:5px 12px;border-radius:100px;font-size:.75rem;font-weight:700;color:#25D366;}
-.live-badge i{width:6px;height:6px;background:#25D366;border-radius:50%;animation:blink 1.5s infinite;}
-.roas-big{font-size:5rem;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
-.roas-sub{font-size:.85rem;color:var(--gray);margin-bottom:26px;}
-.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
-.mini-box{background:rgba(255,255,255,.03);border:1px solid var(--border2);border-radius:12px;padding:16px;}
-.mini-v{font-size:1.35rem;font-weight:800;margin-bottom:3px;}
-.mini-v.g{color:var(--gold);}
-.mini-v.b{color:var(--blue);}
-.mini-k{font-size:.72rem;color:var(--gray);}
-.chart-box{height:110px;}
-.float-tag{position:absolute;backdrop-filter:blur(16px);border-radius:12px;padding:11px 16px;font-size:.78rem;font-weight:700;animation:float 3s ease-in-out infinite;}
-.ft1{top:-18px;right:-18px;background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.3);color:var(--blue);}
-.ft2{bottom:-18px;left:-18px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);color:var(--gold);animation-delay:1.5s;}
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.live-panel{background:rgba(12,12,12,0.9);border:1px solid var(--border);border-radius:20px;padding:28px;backdrop-filter:blur(30px);position:relative;overflow:hidden;}
+.live-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),var(--blue),transparent);}
+.lp-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.lp-title{font-size:0.8rem;color:var(--gray);}
+.live-dot{display:flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);padding:5px 12px;border-radius:100px;font-size:0.72rem;font-weight:700;color:#22c55e;}
+.live-dot i{width:6px;height:6px;background:#22c55e;border-radius:50%;animation:pulse 1.5s infinite;}
+.lp-roas{font-size:4.5rem;font-weight:900;line-height:1;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
+.lp-sub{font-size:0.82rem;color:var(--gray);margin-bottom:22px;}
+.lp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.lp-box{background:rgba(255,255,255,0.03);border:1px solid var(--border2);border-radius:10px;padding:14px;}
+.lp-val{font-size:1.25rem;font-weight:800;margin-bottom:3px;}
+.lp-val.g{color:var(--gold);}
+.lp-val.b{color:var(--blue);}
+.lp-key{font-size:0.7rem;color:var(--gray);}
+.lp-bars{display:flex;flex-direction:column;gap:8px;}
+.bar-row{display:flex;align-items:center;gap:10px;}
+.bar-label{font-size:0.72rem;color:var(--gray);width:60px;text-align:right;flex-shrink:0;}
+.bar-track{flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform-origin:left;transform:scaleX(0);animation:barIn 1.5s ease forwards;}
+.bar-fill.b{background:linear-gradient(90deg,var(--blue),var(--blue2));}
+@keyframes barIn{to{transform:scaleX(1);}}
+.bar-val{font-size:0.72rem;color:var(--gold);font-weight:700;width:32px;flex-shrink:0;}
+.bar-val.b{color:var(--blue);}
+.ftag{position:absolute;backdrop-filter:blur(16px);border-radius:10px;padding:10px 14px;font-size:0.75rem;font-weight:700;animation:flt 3s ease-in-out infinite;}
+.ftag1{top:-16px;right:-16px;background:rgba(14,165,233,0.15);border:1px solid rgba(14,165,233,0.3);color:var(--blue);}
+.ftag2{bottom:-16px;left:-16px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);color:var(--gold);animation-delay:1.5s;}
+@keyframes flt{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 
 /* TICKER */
-.ticker{padding:18px 0;background:linear-gradient(90deg,rgba(201,168,76,.08),rgba(14,165,233,.06),rgba(201,168,76,.08));border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;}
-.ticker-track{display:flex;gap:0;animation:tick 25s linear infinite;white-space:nowrap;}
-.ticker-item{display:inline-flex;align-items:center;gap:12px;padding:0 32px;color:rgba(255,255,255,.5);font-size:.82rem;font-weight:500;flex-shrink:0;}
-.ticker-item strong{color:var(--gold);}
-.ticker-item .sep{color:var(--gold);opacity:.4;}
-@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.ticker-wrap{padding:16px 0;background:linear-gradient(90deg,rgba(201,168,76,0.07),rgba(14,165,233,0.05),rgba(201,168,76,0.07));border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;}
+.ticker-inner{display:flex;animation:tk 22s linear infinite;white-space:nowrap;}
+.ticker-item{display:inline-flex;align-items:center;gap:12px;padding:0 30px;font-size:0.8rem;color:rgba(255,255,255,0.45);font-weight:500;flex-shrink:0;}
+.ticker-item b{color:var(--gold);}
+.ticker-item .dot{color:var(--gold);opacity:0.4;}
+@keyframes tk{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* SECTION BASE */
-.sec{padding:120px 64px;max-width:1400px;margin:0 auto;}
-.sec-lbl{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
-.sec-title{font-size:clamp(2.2rem,3.8vw,3.5rem);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:18px;}
-.sec-sub{font-family:'Inter',sans-serif;color:var(--gray);font-size:1rem;line-height:1.75;max-width:580px;}
-.gold-txt{background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.blue-txt{color:var(--blue);}
+/* SECTIONS BASE */
+.section{padding:110px 60px;max-width:1300px;margin:0 auto;}
+.s-label{display:inline-block;font-size:0.7rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.s-title{font-size:clamp(2.2rem,3.8vw,3.4rem);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:16px;}
+.s-sub{font-family:'Inter',sans-serif;color:var(--gray);font-size:0.97rem;line-height:1.75;}
+.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.blue{color:var(--blue);}
+.divider-line{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);}
 
 /* SERVICES */
-#services{background:linear-gradient(180deg,var(--black) 0%,rgba(201,168,76,.02) 50%,var(--black) 100%);}
-.svc-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;flex-wrap:wrap;gap:30px;}
+#services{background:linear-gradient(180deg,var(--black),rgba(201,168,76,0.02),var(--black));}
+.svc-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:24px;}
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
-.svc-card{background:var(--card);padding:44px 38px;position:relative;overflow:hidden;transition:all .5s;cursor:pointer;}
-.svc-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.06),transparent 60%);opacity:0;transition:opacity .5s;}
-.svc-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue));transition:width .6s;}
-.svc-card:hover{background:var(--card2);transform:translateZ(0);}
+.svc-card{background:var(--card);padding:42px 36px;position:relative;overflow:hidden;transition:all .5s;cursor:pointer;}
+.svc-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.06),rgba(14,165,233,0.03),transparent);opacity:0;transition:opacity .5s;}
+.svc-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue));transition:width .5s;}
+.svc-card:hover{background:#131313;}
 .svc-card:hover::before{opacity:1;}
 .svc-card:hover::after{width:100%;}
-.svc-icon{width:56px;height:56px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:28px;transition:all .4s;}
-.svc-card:hover .svc-icon{background:rgba(201,168,76,.2);box-shadow:0 0 30px rgba(201,168,76,.2);}
-.svc-card h3{font-size:1.2rem;font-weight:800;letter-spacing:-.3px;margin-bottom:14px;}
-.svc-card p{font-family:'Inter',sans-serif;color:var(--gray);font-size:.9rem;line-height:1.75;margin-bottom:24px;}
-.svc-tag{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-size:.82rem;font-weight:700;opacity:0;transform:translateY(8px);transition:all .4s;}
-.svc-card:hover .svc-tag{opacity:1;transform:translateY(0);}
-.svc-num{position:absolute;top:28px;right:28px;font-size:3.5rem;font-weight:900;color:rgba(255,255,255,.03);line-height:1;}
+.svc-num{position:absolute;top:24px;right:24px;font-size:3rem;font-weight:900;color:rgba(255,255,255,0.03);line-height:1;}
+.svc-icon{width:58px;height:58px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.22);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:24px;transition:all .4s;}
+.svc-card:hover .svc-icon{background:rgba(201,168,76,0.2);box-shadow:0 0 28px rgba(201,168,76,0.18);}
+.svc-card h3{font-size:1.15rem;font-weight:800;letter-spacing:-0.3px;margin-bottom:12px;}
+.svc-card p{font-family:'Inter',sans-serif;color:var(--gray);font-size:0.88rem;line-height:1.75;margin-bottom:22px;}
+.svc-link{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-size:0.82rem;font-weight:700;opacity:0;transform:translateY(6px);transition:all .4s;}
+.svc-card:hover .svc-link{opacity:1;transform:translateY(0);}
 
 /* RESULTS */
 #results{position:relative;}
-.results-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(14,165,233,.04) 0%,transparent 65%);}
-.results-inner{position:relative;z-index:1;}
-.results-top{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:80px;}
-.stats-big{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
-.stat-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:34px;position:relative;overflow:hidden;transition:all .4s;}
-.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .6s;}
-.stat-card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.5);}
-.stat-card:hover::before{transform:scaleX(1);}
-.stat-n{font-size:3.2rem;font-weight:900;line-height:1;margin-bottom:6px;}
-.stat-l{font-size:.85rem;color:var(--gray);}
-.stat-desc{font-family:'Inter',sans-serif;font-size:.8rem;color:rgba(255,255,255,.3);margin-top:6px;}
-.chart-section{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:36px;}
-.chart-section h4{font-size:1rem;font-weight:700;margin-bottom:6px;}
-.chart-section p{font-size:.82rem;color:var(--gray);margin-bottom:28px;}
-.chart-wrap{height:280px;}
-
-/* CASE STUDIES */
-.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;}
-.case-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;transition:all .5s;position:relative;overflow:hidden;}
-.case-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),var(--blue));transform:scaleY(0);transform-origin:top;transition:transform .6s;}
-.case-card:hover{border-color:rgba(201,168,76,.25);transform:translateY(-8px);box-shadow:0 30px 80px rgba(0,0,0,.6);}
-.case-card:hover::before{transform:scaleY(1);}
-.case-ind{font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
-.case-card h3{font-size:1.1rem;font-weight:800;margin-bottom:16px;line-height:1.3;}
-.case-roas{font-size:3rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:4px;}
-.case-roas-lbl{font-size:.78rem;color:var(--gray);margin-bottom:20px;}
-.case-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.case-metric{background:rgba(255,255,255,.03);border-radius:10px;padding:12px;}
-.cm-v{font-size:1.1rem;font-weight:800;color:var(--white);}
-.cm-k{font-size:.72rem;color:var(--gray);margin-top:2px;}
+.results-bg-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(14,165,233,0.04),transparent 65%);pointer-events:none;}
+.counters-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:70px;}
+.counter-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px 28px;text-align:center;position:relative;overflow:hidden;transition:all .5s;}
+.counter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .6s;}
+.counter-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,0.5);}
+.counter-card:hover::before{transform:scaleX(1);}
+.counter-card .icon{font-size:2rem;margin-bottom:16px;display:block;}
+.counter-num{font-size:3rem;font-weight:900;line-height:1;margin-bottom:6px;}
+.counter-num.g{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.counter-num.b{color:var(--blue);}
+.counter-label{font-size:0.95rem;font-weight:700;margin-bottom:6px;}
+.counter-desc{font-family:'Inter',sans-serif;font-size:0.78rem;color:var(--gray);line-height:1.5;}
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.result-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px;transition:all .5s;position:relative;overflow:hidden;}
+.result-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),var(--blue));transform:scaleY(0);transform-origin:top;transition:transform .5s;}
+.result-card:hover{border-color:rgba(201,168,76,0.25);transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.5);}
+.result-card:hover::before{transform:scaleY(1);}
+.rc-cat{font-size:0.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
+.rc-title{font-size:1.05rem;font-weight:800;margin-bottom:16px;line-height:1.3;}
+.rc-roas{font-size:2.8rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:4px;}
+.rc-roas-lbl{font-size:0.75rem;color:var(--gray);margin-bottom:18px;}
+.rc-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.rcm{background:rgba(255,255,255,0.03);border:1px solid var(--border2);border-radius:8px;padding:11px;}
+.rcm-v{font-size:1rem;font-weight:800;}
+.rcm-k{font-size:0.7rem;color:var(--gray);margin-top:2px;}
 
 /* PROCESS */
-#process{background:linear-gradient(180deg,var(--black),rgba(8,8,8,.95),var(--black));}
-.process-wrap{margin-top:72px;position:relative;}
-.process-line{position:absolute;top:36px;left:calc(12.5% + 12px);right:calc(12.5% + 12px);height:1px;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,.2),var(--blue));opacity:.3;}
-.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative;z-index:1;}
-.proc-step{text-align:center;padding:0 16px;}
-.proc-num{width:72px;height:72px;background:linear-gradient(135deg,var(--gold),#A07830);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:var(--black);margin:0 auto 28px;position:relative;}
-.proc-num::after{content:'';position:absolute;inset:-6px;border:1px solid rgba(201,168,76,.2);border-radius:50%;}
-.proc-step h3{font-size:1.05rem;font-weight:800;margin-bottom:12px;}
-.proc-step p{font-family:'Inter',sans-serif;font-size:.85rem;color:var(--gray);line-height:1.7;}
-
-/* TEAM */
-#team{background:linear-gradient(135deg,rgba(201,168,76,.02),rgba(14,165,233,.02));}
-.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px;}
-.team-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .5s;position:relative;}
-.team-card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-8px);box-shadow:0 30px 70px rgba(0,0,0,.5);}
-.team-avatar{height:240px;display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;overflow:hidden;}
-.team-card:nth-child(1) .team-avatar{background:linear-gradient(135deg,#1a1200,#3d2c00);}
-.team-card:nth-child(2) .team-avatar{background:linear-gradient(135deg,#001a2e,#003366);}
-.team-card:nth-child(3) .team-avatar{background:linear-gradient(135deg,#1a0a00,#3d1500);}
-.team-card:nth-child(4) .team-avatar{background:linear-gradient(135deg,#001212,#003333);}
-.team-avatar-ring{width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:2.8rem;border:2px solid rgba(201,168,76,.3);}
-.team-info{padding:24px;}
-.team-info h3{font-size:1.05rem;font-weight:800;margin-bottom:4px;}
-.team-role{font-size:.8rem;color:var(--gold);font-weight:600;margin-bottom:10px;}
-.team-bio{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--gray);line-height:1.65;margin-bottom:16px;}
-.team-social{display:flex;gap:8px;}
-.ts{width:30px;height:30px;border:1px solid var(--border2);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--gray);text-decoration:none;transition:all .3s;}
-.ts:hover{border-color:var(--gold);color:var(--gold);}
-.team-stat{position:absolute;top:16px;right:16px;background:rgba(8,8,8,.8);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:8px;padding:8px 12px;text-align:center;}
-.ts-n{font-size:.9rem;font-weight:800;color:var(--gold);}
-.ts-l{font-size:.65rem;color:var(--gray);}
+#process{background:var(--dark);}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:64px;position:relative;}
+.process-line{position:absolute;top:35px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,0.1),var(--blue));opacity:0.3;pointer-events:none;}
+.ps{text-align:center;padding:0 14px;position:relative;z-index:1;}
+.ps-num{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold3));display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:var(--black);margin:0 auto 26px;position:relative;}
+.ps-num::after{content:'';position:absolute;inset:-6px;border:1px solid rgba(201,168,76,0.2);border-radius:50%;}
+.ps h3{font-size:1rem;font-weight:800;margin-bottom:10px;}
+.ps p{font-family:'Inter',sans-serif;font-size:0.83rem;color:var(--gray);line-height:1.7;}
 
 /* TESTIMONIALS */
-#testimonials{position:relative;overflow:hidden;}
-.testi-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,168,76,.04),transparent 55%),radial-gradient(ellipse at 80% 30%,rgba(14,165,233,.04),transparent 50%);}
-.testi-inner{position:relative;z-index:1;}
-.testi-carousel{margin-top:64px;position:relative;}
-.testi-track{display:flex;gap:24px;transition:transform .7s cubic-bezier(.4,0,.2,1);}
-.testi-card{min-width:calc(33.333% - 16px);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:38px;flex-shrink:0;transition:all .5s;position:relative;}
-.testi-card::before{content:'"';position:absolute;top:20px;right:28px;font-size:6rem;color:rgba(201,168,76,.07);font-family:Georgia,serif;line-height:1;}
-.testi-card:hover{border-color:rgba(201,168,76,.25);box-shadow:0 20px 60px rgba(0,0,0,.5);}
-.stars{color:var(--gold);font-size:.85rem;margin-bottom:18px;letter-spacing:2px;}
-.testi-txt{font-family:'Inter',sans-serif;font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:28px;font-style:italic;}
-.testi-author{display:flex;align-items:center;gap:14px;}
-.t-av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#A07830);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:var(--black);flex-shrink:0;}
-.t-name{font-weight:800;font-size:.9rem;}
-.t-title{font-size:.78rem;color:var(--gray);margin-top:2px;}
-.t-roas{margin-top:20px;padding-top:20px;border-top:1px solid var(--border2);display:flex;align-items:center;gap:8px;}
-.t-roas-n{font-size:1.1rem;font-weight:900;color:var(--gold);}
-.t-roas-l{font-size:.78rem;color:var(--gray);}
-.testi-nav{display:flex;justify-content:center;gap:12px;margin-top:40px;}
-.t-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);cursor:pointer;transition:all .3s;}
-.t-dot.active{background:var(--gold);width:28px;border-radius:4px;}
-.testi-arrows{display:flex;gap:12px;justify-content:center;margin-top:20px;}
-.t-arr{width:48px;height:48px;border:1px solid var(--border);border-radius:50%;background:transparent;color:var(--white);font-size:1.1rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;}
-.t-arr:hover{border-color:var(--gold);color:var(--gold);}
+#testimonials{background:linear-gradient(135deg,rgba(201,168,76,0.02),rgba(14,165,233,0.02));}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px;}
+.tc{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:36px;backdrop-filter:blur(20px);position:relative;overflow:hidden;transition:all .5s;}
+.tc::before{content:'"';position:absolute;top:16px;right:22px;font-size:7rem;color:rgba(201,168,76,0.06);font-family:Georgia,serif;line-height:1;}
+.tc:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-8px);box-shadow:0 28px 70px rgba(0,0,0,0.5);}
+.tc-stars{color:var(--gold);font-size:0.85rem;letter-spacing:2px;margin-bottom:16px;}
+.tc-text{font-family:'Inter',sans-serif;font-size:0.93rem;color:rgba(255,255,255,0.72);line-height:1.78;margin-bottom:26px;font-style:italic;}
+.tc-author{display:flex;align-items:center;gap:13px;}
+.tc-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold3));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.88rem;color:var(--black);flex-shrink:0;}
+.tc-name{font-weight:800;font-size:0.88rem;}
+.tc-role{font-size:0.75rem;color:var(--gray);margin-top:2px;}
+.tc-badge{margin-top:18px;padding-top:18px;border-top:1px solid var(--border2);display:flex;align-items:center;gap:8px;}
+.tc-roas{font-size:1.1rem;font-weight:900;color:var(--gold);}
+.tc-rl{font-size:0.75rem;color:var(--gray);}
 
 /* PRICING */
-#pricing{background:linear-gradient(180deg,var(--black),rgba(201,168,76,.02),var(--black));}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px;}
-.price-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:44px;position:relative;transition:all .5s;overflow:hidden;}
-.price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--border);transition:all .5s;}
-.price-card.featured{border-color:rgba(201,168,76,.35);background:linear-gradient(160deg,#111100,var(--card));}
-.price-card.featured::before{background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));}
-.price-card:hover{transform:translateY(-8px);box-shadow:0 30px 80px rgba(0,0,0,.5);}
-.price-card.featured:hover{box-shadow:0 30px 80px rgba(201,168,76,.15);}
-.price-badge{display:inline-block;background:linear-gradient(135deg,var(--gold),#A07830);color:var(--black);padding:5px 16px;border-radius:100px;font-size:.72rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:20px;}
-.price-tier{font-size:.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:12px;}
-.price-name{font-size:1.5rem;font-weight:900;margin-bottom:8px;}
-.price-desc{font-family:'Inter',sans-serif;font-size:.85rem;color:var(--gray);margin-bottom:30px;line-height:1.6;}
-.price-amt{margin-bottom:30px;}
-.price-val{font-size:3.2rem;font-weight:900;line-height:1;}
-.price-val.g{background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.price-period{font-size:.85rem;color:var(--gray);}
-.price-feats{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:38px;}
-.price-feats li{display:flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-size:.88rem;color:rgba(255,255,255,.75);}
-.pf-check{width:20px;height:20px;border-radius:50%;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--gold);flex-shrink:0;}
-.price-feats li.dim{color:rgba(255,255,255,.25);}
-.price-feats li.dim .pf-check{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);color:rgba(255,255,255,.2);}
-.btn-price{display:block;text-align:center;padding:16px;border-radius:10px;font-weight:800;font-size:.95rem;text-decoration:none;transition:all .3s;cursor:pointer;border:none;}
-.btn-price.outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.15);}
-.btn-price.outline:hover{border-color:var(--gold);color:var(--gold);}
-.btn-price.solid{background:linear-gradient(135deg,var(--gold),#A07830);color:var(--black);}
-.btn-price.solid:hover{box-shadow:0 12px 40px rgba(201,168,76,.4);transform:translateY(-2px);}
+#pricing{background:var(--black);}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px;}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:42px;position:relative;overflow:hidden;transition:all .5s;}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--border);transition:all .5s;}
+.pc.feat{border-color:rgba(201,168,76,0.35);background:linear-gradient(160deg,#110e00,var(--card));}
+.pc.feat::before{background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));}
+.pc:hover{transform:translateY(-8px);box-shadow:0 28px 70px rgba(0,0,0,0.55);}
+.pc.feat:hover{box-shadow:0 28px 70px rgba(201,168,76,0.12);}
+.pc-badge{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold3));color:var(--black);padding:4px 14px;border-radius:100px;font-size:0.7rem;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:18px;}
+.pc-tier{font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:10px;}
+.pc-name{font-size:1.4rem;font-weight:900;margin-bottom:8px;}
+.pc-desc{font-family:'Inter',sans-serif;font-size:0.83rem;color:var(--gray);margin-bottom:28px;line-height:1.6;}
+.pc-price{margin-bottom:28px;}
+.pc-amt{font-size:3rem;font-weight:900;line-height:1;}
+.pc-amt.g{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.pc-period{font-size:0.82rem;color:var(--gray);}
+.pc-feats{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:36px;}
+.pc-feats li{display:flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-size:0.86rem;color:rgba(255,255,255,0.72);}
+.pf-ck{width:20px;height:20px;border-radius:50%;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.28);display:flex;align-items:center;justify-content:center;font-size:0.62rem;color:var(--gold);flex-shrink:0;}
+.pc-feats li.off{color:rgba(255,255,255,0.22);}
+.pc-feats li.off .pf-ck{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.06);color:rgba(255,255,255,0.18);}
+.pc-btn{display:block;text-align:center;padding:15px;border-radius:10px;font-weight:800;font-size:0.93rem;text-decoration:none;cursor:pointer;border:none;transition:all .3s;}
+.pc-btn.out{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.15);}
+.pc-btn.out:hover{border-color:var(--gold);color:var(--gold);}
+.pc-btn.sol{background:linear-gradient(135deg,var(--gold),var(--gold3));color:var(--black);}
+.pc-btn.sol:hover{box-shadow:0 12px 40px rgba(201,168,76,0.42);transform:translateY(-2px);}
 
-/* FORM */
-#contact{padding:120px 64px;}
-.form-outer{max-width:1400px;margin:0 auto;}
-.form-wrap{background:var(--card);border:1px solid var(--border);border-radius:28px;overflow:hidden;position:relative;}
-.form-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue),var(--gold));}
-.form-glow{position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,.06),transparent 60%);pointer-events:none;}
-.form-glow2{position:absolute;bottom:-150px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(14,165,233,.05),transparent 60%);pointer-events:none;}
-.form-inner{display:grid;grid-template-columns:1fr 1.2fr;position:relative;z-index:1;}
-.form-left{padding:64px 56px;background:linear-gradient(135deg,rgba(201,168,76,.04),transparent);}
-.form-left h2{font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:900;letter-spacing:-1px;line-height:1.15;margin-bottom:18px;}
-.form-left > p{font-family:'Inter',sans-serif;color:var(--gray);font-size:.95rem;line-height:1.75;margin-bottom:44px;}
-.f-perks{display:flex;flex-direction:column;gap:16px;}
-.f-perk{display:flex;align-items:flex-start;gap:14px;}
-.f-perk-icon{width:32px;height:32px;border-radius:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;margin-top:1px;}
-.f-perk-txt{font-size:.88rem;font-family:'Inter',sans-serif;color:rgba(255,255,255,.7);line-height:1.55;}
-.f-perk-txt strong{color:var(--white);font-family:'Space Grotesk',sans-serif;}
-.form-right{padding:64px 56px;border-left:1px solid var(--border);}
-form{display:flex;flex-direction:column;gap:20px;}
-.fg{display:flex;flex-direction:column;gap:7px;}
-.fg label{font-size:.8rem;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.5px;text-transform:uppercase;}
-.fg input,.fg select,.fg textarea{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:15px 18px;color:var(--white);font-family:'Space Grotesk',sans-serif;font-size:.95rem;outline:none;transition:all .3s;-webkit-appearance:none;}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.1);background:rgba(255,255,255,.06);}
-.fg select option{background:var(--dark);}
-.fg textarea{resize:vertical;min-height:110px;}
-.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.submit-btn{background:linear-gradient(135deg,var(--gold),#A07830);color:var(--black);padding:18px;border-radius:12px;font-weight:900;font-size:1.05rem;border:none;cursor:pointer;transition:all .3s;letter-spacing:.3px;position:relative;overflow:hidden;}
-.submit-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gold-light),var(--gold));opacity:0;transition:opacity .3s;}
-.submit-btn:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(201,168,76,.4);}
-.submit-btn:hover::after{opacity:1;}
-.submit-btn span{position:relative;z-index:1;}
-.form-note{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--gray);text-align:center;}
+/* CONTACT */
+#contact{padding:110px 60px;}
+.contact-outer{max-width:1300px;margin:0 auto;}
+.contact-wrap{background:var(--card);border:1px solid var(--border);border-radius:26px;overflow:hidden;position:relative;}
+.contact-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--blue),var(--gold));}
+.cg1{position:absolute;top:-150px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,0.06),transparent 60%);pointer-events:none;}
+.cg2{position:absolute;bottom:-120px;left:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(14,165,233,0.05),transparent 60%);pointer-events:none;}
+.contact-inner{display:grid;grid-template-columns:1fr 1.15fr;position:relative;z-index:1;}
+.cl{padding:60px 52px;background:linear-gradient(135deg,rgba(201,168,76,0.04),transparent);}
+.cl h2{font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:900;letter-spacing:-1px;line-height:1.12;margin-bottom:16px;}
+.cl>p{font-family:'Inter',sans-serif;color:var(--gray);font-size:0.93rem;line-height:1.75;margin-bottom:40px;}
+.cf-perks{display:flex;flex-direction:column;gap:14px;}
+.cfp{display:flex;align-items:flex-start;gap:12px;}
+.cfp-icon{width:30px;height:30px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;flex-shrink:0;}
+.cfp-txt{font-family:'Inter',sans-serif;font-size:0.86rem;color:rgba(255,255,255,0.65);line-height:1.55;}
+.cfp-txt strong{color:var(--white);font-family:'Space Grotesk',sans-serif;}
+.cr{padding:60px 52px;border-left:1px solid var(--border);}
+form{display:flex;flex-direction:column;gap:18px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fg label{font-size:0.75rem;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:0.5px;text-transform:uppercase;}
+.fg input,.fg select,.fg textarea{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:9px;padding:14px 16px;color:var(--white);font-family:'Space Grotesk',sans-serif;font-size:0.93rem;outline:none;transition:all .3s;-webkit-appearance:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.1);background:rgba(255,255,255,0.06);}
+.fg select option{background:#111;}
+.fg textarea{resize:vertical;min-height:100px;}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sbtn{background:linear-gradient(135deg,var(--gold),var(--gold3));color:var(--black);padding:17px;border-radius:10px;font-weight:900;font-size:1rem;border:none;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;}
+.sbtn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gold2),var(--gold));opacity:0;transition:opacity .3s;}
+.sbtn:hover{transform:translateY(-3px);box-shadow:0 18px 50px rgba(201,168,76,0.4);}
+.sbtn:hover::after{opacity:1;}
+.sbtn span{position:relative;z-index:1;}
+.f-note{font-family:'Inter',sans-serif;font-size:0.75rem;color:var(--gray);text-align:center;}
 
 /* FOOTER */
-footer{background:rgba(4,4,4,.98);border-top:1px solid var(--border);}
-.footer-top{max-width:1400px;margin:0 auto;padding:80px 64px 60px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:60px;}
-.f-brand .nav-logo{display:inline-block;margin-bottom:18px;font-size:1.5rem;}
-.f-brand p{font-family:'Inter',sans-serif;color:var(--gray);font-size:.88rem;line-height:1.75;max-width:280px;margin-bottom:24px;}
-.f-socials{display:flex;gap:10px;}
-.fsoc{width:38px;height:38px;border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--gray);text-decoration:none;font-size:.85rem;font-weight:700;transition:all .3s;}
-.fsoc:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.06);}
-.f-col h5{font-size:.72rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px;}
-.f-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
-.f-col ul a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.88rem;font-family:'Inter',sans-serif;transition:color .3s;}
-.f-col ul a:hover{color:var(--gold);}
-.footer-btm{border-top:1px solid rgba(255,255,255,.04);max-width:1400px;margin:0 auto;padding:24px 64px;display:flex;justify-content:space-between;align-items:center;}
-.footer-btm p{font-family:'Inter',sans-serif;color:rgba(255,255,255,.25);font-size:.82rem;}
-.footer-btm-links{display:flex;gap:24px;}
-.footer-btm-links a{color:rgba(255,255,255,.25);text-decoration:none;font-size:.82rem;font-family:'Inter',sans-serif;transition:color .3s;}
-.footer-btm-links a:hover{color:var(--gold);}
+footer{background:rgba(4,4,4,0.99);border-top:1px solid var(--border);}
+.ft{max-width:1300px;margin:0 auto;padding:70px 60px 50px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;}
+.fb p{font-family:'Inter',sans-serif;color:var(--gray);font-size:0.85rem;line-height:1.75;max-width:270px;margin:16px 0 22px;}
+.fsocs{display:flex;gap:8px;}
+.fsoc{width:36px;height:36px;border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;color:var(--gray);text-decoration:none;font-size:0.8rem;font-weight:700;transition:all .3s;}
+.fsoc:hover{border-color:var(--gold);color:var(--gold);}
+.fc h5{font-size:0.7rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:18px;}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.fc ul a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.85rem;font-family:'Inter',sans-serif;transition:color .3s;}
+.fc ul a:hover{color:var(--gold);}
+.fbtm{border-top:1px solid rgba(255,255,255,0.04);max-width:1300px;margin:0 auto;padding:22px 60px;display:flex;justify-content:space-between;align-items:center;}
+.fbtm p{font-family:'Inter',sans-serif;color:rgba(255,255,255,0.2);font-size:0.8rem;}
+.fbtm-links{display:flex;gap:20px;}
+.fbtm-links a{color:rgba(255,255,255,0.2);text-decoration:none;font-size:0.8rem;font-family:'Inter',sans-serif;transition:color .3s;}
+.fbtm-links a:hover{color:var(--gold);}
 
-/* MOBILE NAV MENU */
-#mobile-menu{display:none;position:fixed;inset:0;background:rgba(8,8,8,.98);backdrop-filter:blur(30px);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
-#mobile-menu.open{display:flex;}
-#mobile-menu a{font-size:1.6rem;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:-1px;}
-#mobile-menu a:hover{color:var(--gold);}
+/* REVEAL ANIMS */
+.rv{opacity:0;transform:translateY(40px);}
+.rvl{opacity:0;transform:translateX(-40px);}
+.rvr{opacity:0;transform:translateX(40px);}
+.rvs{opacity:0;transform:scale(0.93);}
 
-/* ANIMATIONS & UTILITIES */
-.reveal{opacity:0;transform:translateY(50px);}
-.reveal-left{opacity:0;transform:translateX(-50px);}
-.reveal-right{opacity:0;transform:translateX(50px);}
-.reveal-scale{opacity:0;transform:scale(.9);}
-.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0;}
+/* SUCCESS */
+.success-msg{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:10px;padding:20px;text-align:center;color:#22c55e;font-weight:700;display:none;}
 
 /* RESPONSIVE */
 @media(max-width:1100px){
-  #nav{padding:0 32px;}
-  .nav-links{gap:24px;}
-  .hero-wrap{padding:0 32px;gap:48px;}
-  .sec{padding:80px 32px;}
+  nav{padding:0 32px;}
+  .hero-inner{padding:100px 32px 70px;gap:48px;}
+  .section{padding:80px 32px;}
   .svc-grid{grid-template-columns:1fr 1fr;}
-  .results-top{grid-template-columns:1fr;}
-  .cases-grid{grid-template-columns:1fr 1fr;}
-  .team-grid{grid-template-columns:1fr 1fr;}
-  .testi-card{min-width:calc(50% - 12px);}
+  .counters-grid{grid-template-columns:1fr 1fr;}
+  .results-grid{grid-template-columns:1fr;}
+  .testi-grid{grid-template-columns:1fr;}
   .pricing-grid{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr 1fr;gap:40px;}
+  .ft{grid-template-columns:1fr 1fr;gap:36px;padding:60px 32px 40px;}
+  .fbtm{padding:20px 32px;}
   #contact{padding:80px 32px;}
-  .form-inner{grid-template-columns:1fr;}
-  .form-right{border-left:none;border-top:1px solid var(--border);padding:40px 40px;}
-  .form-left{padding:50px 40px;}
-  .footer-btm{padding:24px 32px;}
+  .contact-inner{grid-template-columns:1fr;}
+  .cr{border-left:none;border-top:1px solid var(--border);padding:44px 52px;}
 }
 @media(max-width:768px){
   .nav-links{display:none;}
-  #nav-toggle{display:flex;}
-  #nav{padding:0 24px;}
-  .hero-wrap{grid-template-columns:1fr;padding:0 24px;}
+  .hbg{display:flex;}
+  nav{padding:0 22px;}
+  .hero-inner{grid-template-columns:1fr;padding:90px 22px 60px;}
   .hero-right{display:none;}
-  .hero-h1{letter-spacing:-2px;}
-  .hero-kpis{grid-template-columns:repeat(3,1fr);}
-  .sec{padding:64px 24px;}
+  .hero-stats-row{grid-template-columns:repeat(3,1fr);}
+  .section{padding:64px 22px;}
   .svc-grid{grid-template-columns:1fr;}
-  .stats-big{grid-template-columns:1fr 1fr;}
-  .cases-grid{grid-template-columns:1fr;}
-  .process-grid{grid-template-columns:1fr 1fr;}
+  .counters-grid{grid-template-columns:1fr 1fr;}
+  .process-steps{grid-template-columns:1fr 1fr;}
   .process-line{display:none;}
-  .team-grid{grid-template-columns:1fr 1fr;}
-  .testi-card{min-width:calc(100% - 0px);}
+  .testi-grid{grid-template-columns:1fr;}
   .pricing-grid{grid-template-columns:1fr;}
-  .form-inner{grid-template-columns:1fr;}
-  .form-left,.form-right{padding:36px 28px;}
-  .form-row2{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr;padding:50px 24px 40px;}
-  .footer-btm{padding:20px 24px;flex-direction:column;gap:16px;text-align:center;}
-  #contact{padding:60px 24px;}
+  .ft{grid-template-columns:1fr;padding:50px 22px 36px;}
+  .fbtm{padding:18px 22px;flex-direction:column;gap:14px;text-align:center;}
+  #contact{padding:60px 22px;}
+  .cl,.cr{padding:36px 26px;}
+  .f2{grid-template-columns:1fr;}
 }
 @media(max-width:480px){
-  .hero-kpis{grid-template-columns:1fr;}
-  .stats-big{grid-template-columns:1fr;}
-  .team-grid{grid-template-columns:1fr;}
-  .process-grid{grid-template-columns:1fr;}
-  .svc-header{flex-direction:column;align-items:flex-start;}
+  .hero-stats-row{grid-template-columns:1fr;}
+  .counters-grid{grid-template-columns:1fr;}
+  .process-steps{grid-template-columns:1fr;}
+  .hero-h1{letter-spacing:-2px;}
 }
 </style>
 </head>
 <body>
 
-<div id="cur"></div>
-<div id="cur2"></div>
+<div class="c1" id="c1"></div>
+<div class="c2" id="c2"></div>
 
 <!-- MOBILE MENU -->
-<div id="mobile-menu">
-  <a href="#services" onclick="closeMenu()">Services</a>
-  <a href="#results" onclick="closeMenu()">Results</a>
-  <a href="#process" onclick="closeMenu()">Process</a>
-  <a href="#team" onclick="closeMenu()">Team</a>
-  <a href="#pricing" onclick="closeMenu()">Pricing</a>
-  <a href="#contact" onclick="closeMenu()" style="color:var(--gold)">Get Free Audit →</a>
+<div class="mob-menu" id="mobMenu">
+  <a href="#services" onclick="closeMob()">Services</a>
+  <a href="#results" onclick="closeMob()">Results</a>
+  <a href="#process" onclick="closeMob()">Process</a>
+  <a href="#testimonials" onclick="closeMob()">Clients</a>
+  <a href="#pricing" onclick="closeMob()">Pricing</a>
+  <a href="#contact" onclick="closeMob()" style="color:var(--gold)">Free Audit →</a>
 </div>
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo"><em>High</em>ROAS<span>.ae</span></a>
+  <a href="#" class="logo"><span>High</span>ROAS<em>.ae</em></a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#results">Results</a></li>
     <li><a href="#process">Process</a></li>
-    <li><a href="#team">Team</a></li>
     <li><a href="#testimonials">Clients</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#contact" class="nav-cta">Free Audit →</a></li>
+    <li><a href="#contact" class="nav-btn">Free Audit →</a></li>
   </ul>
-  <div id="nav-toggle" onclick="toggleMenu()">
+  <div class="hbg" id="hbg" onclick="toggleMob()">
     <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
 <section id="hero">
-  <canvas id="hero-canvas"></canvas>
+  <canvas id="c3d"></canvas>
   <div class="hero-fog"></div>
-  <div class="hero-wrap">
-    <div class="hero-left">
-      <div class="h-pill"><div class="h-dot"></div>UAE's #1 Performance Agency</div>
-      <h1 class="hero-h1" id="hero-title">
-        We Don't<br>Run Ads.<br>We <span class="g">Print</span><br><span class="b">Revenue.</span>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-pill"><div class="hero-pill-dot"></div>Dubai's #1 Performance Agency</div>
+      <h1 class="hero-h1">
+        <span class="line1">We Don't</span>
+        <span class="line2">Run Ads.</span>
+        <span class="line3">We <span class="g-text">Print</span></span>
+        <span class="line4">Revenue.</span>
       </h1>
-      <p class="hero-p">The Middle East's most aggressive performance marketing agency. We engineer paid media systems that scale brands from 6 to 8 figures — with data, creative, and relentless optimization.</p>
-      <div class="hero-btns">
-        <a href="#contact" class="btn-gold">🚀 Get Your Free Audit</a>
-        <a href="#results" class="btn-ghost">See Live Results ↓</a>
+      <p class="hero-desc">The Middle East's most aggressive performance marketing agency. We engineer paid media systems that scale brands from 6 to 8 figures — powered by data, tested creative, and obsessive optimization.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-g">🚀 Get Your Free Audit</a>
+        <a href="#results" class="btn-o">See Results ↓</a>
       </div>
-      <div class="hero-kpis">
-        <div class="kpi"><div class="kpi-n" id="kpi1">0</div><div class="kpi-l">Avg. ROAS</div></div>
-        <div class="kpi"><div class="kpi-n" id="kpi2">0</div><div class="kpi-l">Clients Scaled</div></div>
-        <div class="kpi"><div class="kpi-n" id="kpi3">0</div><div class="kpi-l">Retention Rate</div></div>
+      <div class="hero-stats-row">
+        <div class="hs-item">
+          <div class="hs-num" id="hkpi1">0x</div>
+          <div class="hs-lbl">Avg. ROAS</div>
+        </div>
+        <div class="hs-item">
+          <div class="hs-num" id="hkpi2">0+</div>
+          <div class="hs-lbl">Brands Scaled</div>
+        </div>
+        <div class="hs-item">
+          <div class="hs-num" id="hkpi3">0%</div>
+          <div class="hs-lbl">Retention Rate</div>
+        </div>
       </div>
     </div>
     <div class="hero-right">
       <div style="position:relative;">
-        <div class="float-tag ft1">📈 +847% Revenue in 90 Days</div>
-        <div class="live-card">
-          <div class="lc-top">
-            <span class="lc-label">Live Campaign Dashboard</span>
-            <span class="live-badge"><i></i>Live</span>
+        <div class="ftag ftag1">📈 +847% Revenue in 90 Days</div>
+        <div class="live-panel">
+          <div class="lp-head">
+            <span class="lp-title">Live Campaign Performance</span>
+            <span class="live-dot"><i></i>Live</span>
           </div>
-          <div class="roas-big" id="live-roas">14.8x</div>
-          <div class="roas-sub">Return on Ad Spend — Last 30 Days</div>
-          <div class="mini-grid">
-            <div class="mini-box"><div class="mini-v g">AED 2.4M</div><div class="mini-k">Revenue Driven</div></div>
-            <div class="mini-box"><div class="mini-v b">AED 162K</div><div class="mini-k">Ad Spend</div></div>
-            <div class="mini-box"><div class="mini-v">4.1%</div><div class="mini-k">Avg. CTR</div></div>
-            <div class="mini-box"><div class="mini-v g">AED 3.80</div><div class="mini-k">Avg. CPC</div></div>
+          <div class="lp-roas" id="liveRoas">14.8x</div>
+          <div class="lp-sub">Return on Ad Spend — Last 30 Days</div>
+          <div class="lp-grid">
+            <div class="lp-box"><div class="lp-val g">AED 2.4M</div><div class="lp-key">Revenue Driven</div></div>
+            <div class="lp-box"><div class="lp-val b">AED 162K</div><div class="lp-key">Ad Spend</div></div>
+            <div class="lp-box"><div class="lp-val">4.1%</div><div class="lp-key">Avg. CTR</div></div>
+            <div class="lp-box"><div class="lp-val g">AED 3.80</div><div class="lp-key">Cost Per Click</div></div>
           </div>
-          <div class="chart-box"><canvas id="heroChart"></canvas></div>
+          <div class="lp-bars">
+            <div class="bar-row">
+              <span class="bar-label">Meta</span>
+              <div class="bar-track"><div class="bar-fill" style="animation-delay:0.2s;--w:0.88" id="bf1"></div></div>
+              <span class="bar-val">18.2x</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Google</span>
+              <div class="bar-track"><div class="bar-fill" style="animation-delay:0.4s;" id="bf2"></div></div>
+              <span class="bar-val">14.6x</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">TikTok</span>
+              <div class="bar-track"><div class="bar-fill b" style="animation-delay:0.6s;" id="bf3"></div></div>
+              <span class="bar-val b">11.3x</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Snap</span>
+              <div class="bar-track"><div class="bar-fill b" style="animation-delay:0.8s;" id="bf4"></div></div>
+              <span class="bar-val b">9.8x</span>
+            </div>
+          </div>
         </div>
-        <div class="float-tag ft2">🏆 Best Agency UAE 2024</div>
+        <div class="ftag ftag2">🏆 Best Agency UAE 2024</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track" id="ticker">
-    <div class="ticker-item"><strong>Meta Ads</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>Google Performance Max</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>TikTok Ads</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>14.8x Average ROAS</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>Snapchat Ads</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>Real Estate Lead Gen</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>YouTube Ads</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>E-Commerce Scaling</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>AED 200M+ Revenue Generated</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>97% Client Retention</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>Meta Ads</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>Google Performance Max</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>TikTok Ads</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>14.8x Average ROAS</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>Snapchat Ads</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>Real Estate Lead Gen</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>YouTube Ads</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>E-Commerce Scaling</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>AED 200M+ Revenue Generated</strong><span class="sep">✦</span></div>
-    <div class="ticker-item"><strong>97% Client Retention</strong><span class="sep">✦</span></div>
+<div class="ticker-wrap">
+  <div class="ticker-inner" id="tickerInner">
+    <div class="ticker-item"><b>Meta Ads</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>Google Performance Max</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>TikTok Ads</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>8.4x Average ROAS</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>Snapchat Ads</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>Real Estate Lead Gen</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>E-Commerce Scaling</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>AED 200M+ Managed</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>150+ Brands Scaled</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>48hr Onboarding</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>Meta Ads</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>Google Performance Max</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>TikTok Ads</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>8.4x Average ROAS</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>Snapchat Ads</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>Real Estate Lead Gen</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>E-Commerce Scaling</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>AED 200M+ Managed</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>150+ Brands Scaled</b><span class="dot">✦</span></div>
+    <div class="ticker-item"><b>48hr Onboarding</b><span class="dot">✦</span></div>
   </div>
 </div>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="sec">
-    <div class="svc-header">
+<!-- ═══════════════════════════════════════ SERVICES ═══════════════════════════════════════ -->
+<section id="services" style="background:linear-gradient(180deg,var(--black),rgba(201,168,76,0.02),var(--black));">
+  <div class="section">
+    <div class="svc-head">
       <div>
-        <div class="sec-lbl">What We Do</div>
-        <h2 class="sec-title">Paid Media That<br><span class="gold-txt">Actually Performs</span></h2>
+        <div class="s-label">What We Do</div>
+        <h2 class="s-title">Six Weapons.<br>One Goal: <span class="gold">More Revenue.</span></h2>
       </div>
-      <p class="sec-sub" style="max-width:380px;">We specialize exclusively in one thing: turning your ad budget into maximum revenue. No fluff. Just performance.</p>
+      <p class="s-sub" style="max-width:360px;">We specialize in paid media that converts. Every service is built around one metric — your ROAS.</p>
     </div>
-    <div class="svc-grid reveal">
+    <div class="svc-grid rv" id="svcGrid">
       <div class="svc-card">
         <div class="svc-num">01</div>
-        <div class="svc-icon">🎯</div>
-        <h3>Meta & Instagram Ads</h3>
-        <p>Full-funnel Meta campaigns engineered at every stage — from cold audience acquisition to dynamic product retargeting sequences that print sales on autopilot.</p>
-        <div class="svc-tag">Explore Service →</div>
+        <div class="svc-icon">🔍</div>
+        <h3>Google Ads</h3>
+        <p>Search, Shopping, Performance Max and Display campaigns engineered for maximum revenue. We optimize every bid signal — not impressions, not clicks, just profit.</p>
+        <div class="svc-link">Explore →</div>
       </div>
       <div class="svc-card">
         <div class="svc-num">02</div>
-        <div class="svc-icon">🔍</div>
-        <h3>Google Performance Max</h3>
-        <p>Dominate search, Shopping, YouTube and Display simultaneously. We optimize every signal for maximum ROAS — not impressions, not clicks, just revenue.</p>
-        <div class="svc-tag">Explore Service →</div>
+        <div class="svc-icon">🎯</div>
+        <h3>Meta Ads</h3>
+        <p>Full-funnel Facebook and Instagram campaigns from cold audience acquisition to precision retargeting sequences. We've generated AED 50M+ through Meta alone.</p>
+        <div class="svc-link">Explore →</div>
       </div>
       <div class="svc-card">
         <div class="svc-num">03</div>
         <div class="svc-icon">🎵</div>
-        <h3>TikTok & Snapchat Ads</h3>
-        <p>Reach the GCC's most engaged audiences with scroll-stopping creative that converts. We produce the content and manage the spend — you collect the revenue.</p>
-        <div class="svc-tag">Explore Service →</div>
+        <h3>TikTok Ads</h3>
+        <p>Scroll-stopping creative paired with surgical audience targeting. We produce the content, manage the spend, and deliver revenue — you just collect the profit.</p>
+        <div class="svc-link">Explore →</div>
       </div>
       <div class="svc-card">
         <div class="svc-num">04</div>
-        <div class="svc-icon">🏢</div>
-        <h3>Real Estate Lead Gen</h3>
-        <p>Pre-qualified buyer and investor leads for Dubai developers. Our hyper-targeted campaigns deliver prospects ready to schedule viewings — not tire-kickers.</p>
-        <div class="svc-tag">Explore Service →</div>
+        <div class="svc-icon">🎨</div>
+        <h3>Creative Strategy</h3>
+        <p>Ad creative is the #1 lever in paid media. Our in-house creative team produces video, static, and UGC content tested to convert — backed by data, not opinions.</p>
+        <div class="svc-link">Explore →</div>
       </div>
       <div class="svc-card">
         <div class="svc-num">05</div>
-        <div class="svc-icon">🛒</div>
-        <h3>E-Commerce Scaling</h3>
-        <p>We've scaled 150+ Shopify and WooCommerce stores to 8-figures across the GCC. Our proprietary playbook turns ad spend into compounding revenue engines.</p>
-        <div class="svc-tag">Explore Service →</div>
+        <div class="svc-icon">🖥️</div>
+        <h3>Landing Pages</h3>
+        <p>High-converting landing pages built specifically for your campaigns. Every element — headline, CTA, layout — is A/B tested to maximize your conversion rate.</p>
+        <div class="svc-link">Explore →</div>
       </div>
       <div class="svc-card">
         <div class="svc-num">06</div>
         <div class="svc-icon">📊</div>
-        <h3>Analytics & CRO</h3>
-        <p>Advanced tracking, attribution modeling, and conversion rate optimization. We find where your funnel hemorrhages money and plug every single leak.</p>
-        <div class="svc-tag">Explore Service →</div>
+        <h3>Analytics & Tracking</h3>
+        <p>Bulletproof tracking setup, GA4 configuration, custom dashboards and attribution modeling. You'll always know exactly which ads are printing money — and which aren't.</p>
+        <div class="svc-link">Explore →</div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="divider-line"></div>
 
-<!-- RESULTS -->
-<section id="results">
-  <div class="results-bg"></div>
-  <div class="sec results-inner">
-    <div class="results-top">
-      <div>
-        <div class="sec-lbl">Proven Results</div>
-        <h2 class="sec-title">Numbers That<br>Don't <span class="gold-txt">Lie</span></h2>
-        <p class="sec-sub" style="margin-bottom:44px;">Real results. Real clients. Real revenue generated across UAE, KSA, Kuwait and the wider GCC market.</p>
-        <div class="stats-big">
-          <div class="stat-card reveal-left">
-            <div class="stat-n gold-txt" data-count="14.8" data-suffix="x">0</div>
-            <div class="stat-l">Average ROAS</div>
-            <div class="stat-desc">Across all active campaigns Q4 2024</div>
-          </div>
-          <div class="stat-card reveal-right">
-            <div class="stat-n" style="color:var(--blue)">AED 200M+</div>
-            <div class="stat-l">Revenue Generated</div>
-            <div class="stat-desc">Total for clients since 2020</div>
-          </div>
-          <div class="stat-card reveal-left">
-            <div class="stat-n gold-txt" data-count="320" data-suffix="+">0</div>
-            <div class="stat-l">Brands Scaled</div>
-            <div class="stat-desc">Active clients across the GCC</div>
-          </div>
-          <div class="stat-card reveal-right">
-            <div class="stat-n gold-txt" data-count="97" data-suffix="%">0</div>
-            <div class="stat-l">Retention Rate</div>
-            <div class="stat-desc">Because results speak louder</div>
-          </div>
-        </div>
+<!-- ═══════════════════════════════════════ RESULTS ═══════════════════════════════════════ -->
+<section id="results" style="position:relative;overflow:hidden;">
+  <div class="results-bg-glow"></div>
+  <div class="section" style="position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <div class="s-label">Proven Results</div>
+      <h2 class="s-title">Numbers That<br>Don't <span class="gold">Lie</span></h2>
+      <p class="s-sub" style="margin:0 auto;max-width:500px;">Real results from real campaigns. No projections, no estimates — just actual revenue generated for our clients across the UAE and GCC.</p>
+    </div>
+
+    <!-- BIG COUNTERS -->
+    <div class="counters-grid">
+      <div class="counter-card rv">
+        <span class="icon">📈</span>
+        <div class="counter-num g" data-target="8.4" data-dec="1" data-suf="x" id="cnt1">0x</div>
+        <div class="counter-label">Average ROAS Delivered</div>
+        <div class="counter-desc">Across all active campaigns in Q4 2024, measured client-side</div>
       </div>
-      <div class="chart-section reveal-right">
-        <h4>Client Revenue Growth</h4>
-        <p>Average YoY growth across active e-commerce accounts</p>
-        <div class="chart-wrap"><canvas id="resultsChart"></canvas></div>
+      <div class="counter-card rv">
+        <span class="icon">🏢</span>
+        <div class="counter-num g" data-target="150" data-dec="0" data-suf="+" id="cnt2">0+</div>
+        <div class="counter-label">Brands Successfully Scaled</div>
+        <div class="counter-desc">From startups to enterprise across UAE, KSA and GCC</div>
+      </div>
+      <div class="counter-card rv">
+        <span class="icon">💰</span>
+        <div class="counter-num b" id="cnt3">AED 200M+</div>
+        <div class="counter-label">Ad Spend Managed</div>
+        <div class="counter-desc">Total media budget managed since our founding in 2020</div>
+      </div>
+      <div class="counter-card rv">
+        <span class="icon">⚡</span>
+        <div class="counter-num g" data-target="48" data-dec="0" data-suf="hr" id="cnt4">0hr</div>
+        <div class="counter-label">Average Onboarding Time</div>
+        <div class="counter-desc">From signed contract to live campaigns — we move fast</div>
       </div>
     </div>
 
-    <div class="sec-lbl" style="margin-top:20px;">Case Studies</div>
-    <h2 class="sec-title">From <span class="gold-txt">Struggling</span> to<br><span class="blue-txt">Dominating</span></h2>
-    <div class="cases-grid">
-      <div class="case-card reveal">
-        <div class="case-ind">E-Commerce · Fashion</div>
-        <h3>Dubai Luxury Fashion Brand</h3>
-        <div class="case-roas">18.4x</div>
-        <div class="case-roas-lbl">Return on Ad Spend</div>
-        <div class="case-metrics">
-          <div class="case-metric"><div class="cm-v">AED 2.1M</div><div class="cm-k">Monthly Revenue</div></div>
-          <div class="case-metric"><div class="cm-v">+847%</div><div class="cm-k">Revenue Growth</div></div>
-          <div class="case-metric"><div class="cm-v">AED 114K</div><div class="cm-k">Monthly Ad Spend</div></div>
-          <div class="case-metric"><div class="cm-v">3 Months</div><div class="cm-k">Time to Scale</div></div>
+    <!-- CASE STUDIES -->
+    <div style="margin-top:20px;">
+      <div class="s-label">Case Studies</div>
+      <h2 class="s-title" style="margin-bottom:36px;">From <span class="gold">Struggling</span> to<br><span class="blue">Dominating</span></h2>
+    </div>
+    <div class="results-grid">
+      <div class="result-card rv">
+        <div class="rc-cat">E-Commerce · Fashion</div>
+        <h3 class="rc-title">Dubai Luxury Fashion Brand scaled from AED 80K to AED 2.1M monthly revenue</h3>
+        <div class="rc-roas">18.4x</div>
+        <div class="rc-roas-lbl">Return on Ad Spend — 90 Day Campaign</div>
+        <div class="rc-metrics">
+          <div class="rcm"><div class="rcm-v" style="color:var(--gold);">AED 2.1M</div><div class="rcm-k">Monthly Revenue</div></div>
+          <div class="rcm"><div class="rcm-v">+847%</div><div class="rcm-k">Revenue Growth</div></div>
+          <div class="rcm"><div class="rcm-v">AED 114K</div><div class="rcm-k">Monthly Spend</div></div>
+          <div class="rcm"><div class="rcm-v" style="color:var(--blue);">3 Months</div><div class="rcm-k">Time to Scale</div></div>
         </div>
       </div>
-      <div class="case-card reveal">
-        <div class="case-ind">Real Estate · Developer</div>
-        <h3>Premium Dubai Property Developer</h3>
-        <div class="case-roas">AED 45M</div>
-        <div class="case-roas-lbl">Sales Revenue in 6 Months</div>
-        <div class="case-metrics">
-          <div class="case-metric"><div class="cm-v">847</div><div class="cm-k">Qualified Leads</div></div>
-          <div class="case-metric"><div class="cm-v">AED 52K</div><div class="cm-k">Cost Per Sale</div></div>
-          <div class="case-metric"><div class="cm-v">4.2%</div><div class="cm-k">Lead-to-Sale Rate</div></div>
-          <div class="case-metric"><div class="cm-v">6 Months</div><div class="cm-k">Campaign Duration</div></div>
+      <div class="result-card rv">
+        <div class="rc-cat">Real Estate · Developer</div>
+        <h3 class="rc-title">Premium Dubai developer generated AED 45M in property sales in 6 months</h3>
+        <div class="rc-roas">AED 45M</div>
+        <div class="rc-roas-lbl">Sales Revenue Attributed to Campaigns</div>
+        <div class="rc-metrics">
+          <div class="rcm"><div class="rcm-v" style="color:var(--gold);">847</div><div class="rcm-k">Qualified Leads</div></div>
+          <div class="rcm"><div class="rcm-v">4.2%</div><div class="rcm-k">Lead-to-Sale Rate</div></div>
+          <div class="rcm"><div class="rcm-v">AED 52K</div><div class="rcm-k">Cost Per Sale</div></div>
+          <div class="rcm"><div class="rcm-v" style="color:var(--blue);">6 Months</div><div class="rcm-k">Duration</div></div>
         </div>
       </div>
-      <div class="case-card reveal">
-        <div class="case-ind">Healthcare · Clinics</div>
-        <h3>Aesthetic Medicine Group UAE</h3>
-        <div class="case-roas">22.1x</div>
-        <div class="case-roas-lbl">Return on Ad Spend</div>
-        <div class="case-metrics">
-          <div class="case-metric"><div class="cm-v">1,240</div><div class="cm-k">Bookings/Month</div></div>
-          <div class="case-metric"><div class="cm-v">-68%</div><div class="cm-k">Cost Per Lead</div></div>
-          <div class="case-metric"><div class="cm-v">AED 48</div><div class="cm-k">Avg. CPL</div></div>
-          <div class="case-metric"><div class="cm-v">4 Clinics</div><div class="cm-k">Locations Scaled</div></div>
+      <div class="result-card rv">
+        <div class="rc-cat">Healthcare · Aesthetics</div>
+        <h3 class="rc-title">UAE aesthetic clinic group cut CPL by 68% while tripling monthly bookings</h3>
+        <div class="rc-roas">22.1x</div>
+        <div class="rc-roas-lbl">Return on Ad Spend — Multi-Clinic Campaign</div>
+        <div class="rc-metrics">
+          <div class="rcm"><div class="rcm-v" style="color:var(--gold);">1,240</div><div class="rcm-k">Monthly Bookings</div></div>
+          <div class="rcm"><div class="rcm-v">-68%</div><div class="rcm-k">Cost Per Lead</div></div>
+          <div class="rcm"><div class="rcm-v">AED 48</div><div class="rcm-k">Avg. CPL</div></div>
+          <div class="rcm"><div class="rcm-v" style="color:var(--blue);">4 Locations</div><div class="rcm-k">Scaled</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="divider-line"></div>
 
-<!-- PROCESS -->
-<section id="process">
-  <div class="sec">
+<!-- ═══════════════════════════════════════ PROCESS ═══════════════════════════════════════ -->
+<section id="process" style="background:var(--dark);">
+  <div class="section">
     <div style="text-align:center;">
-      <div class="sec-lbl">How We Work</div>
-      <h2 class="sec-title" style="text-align:center;">From Audit to<br><span class="gold-txt">Domination</span></h2>
-      <p class="sec-sub" style="margin:0 auto 0;text-align:center;">Our battle-tested 4-step framework takes any ad account from underperforming to unstoppable — in 30 days.</p>
+      <div class="s-label">How We Work</div>
+      <h2 class="s-title">Audit to <span class="gold">Domination</span><br>in 30 Days</h2>
+      <p class="s-sub" style="margin:0 auto;max-width:520px;">Our battle-tested 4-step framework takes your ad account from underperforming to unstoppable. No fluff. No 3-month ramp. Just results.</p>
     </div>
-    <div class="process-wrap">
+    <div class="process-steps">
       <div class="process-line"></div>
-      <div class="process-grid">
-        <div class="proc-step reveal">
-          <div class="proc-num">01</div>
-          <h3>Deep Audit</h3>
-          <p>We dissect your ad account, funnel, analytics and competitors to uncover every hidden opportunity and every money-draining leak — completely free.</p>
-        </div>
-        <div class="proc-step reveal">
-          <div class="proc-num">02</div>
-          <h3>Strategy Build</h3>
-          <p>Custom full-funnel paid media strategy engineered around your margins, target ROAS, and aggressive growth objectives. No templates. No guesswork.</p>
-        </div>
-        
+      <div class="ps rv">
+        <div class="ps-num">01</div>
+        <h3>Deep Audit</h3>
+        <p>We tear apart your existing ad account, funnel, and analytics setup to expose every money-draining inefficiency and hidden opportunity — completely free of charge.</p>
+      </div>
+      <div class="ps rv">
+        <div class="ps-num">02</div>
+        <h3>Strategy Build</h3>
+        <p>A custom full-funnel paid media strategy built around your unit economics, target ROAS, and aggressive growth objectives. Zero templates. Zero guesswork.</p>
+      </div>
+      <div class="ps rv">
+        <div class="ps-num">03</div>
+        <h3>Launch & Test</h3>
+        <p>Rapid creative testing across multiple audiences and angles in the first 14 days. We identify winners fast and cut losers faster — your budget only fuels winners.</p>
+      </div>
+      <div class="ps rv">
+        <div class="ps-num">04</div>
+        <h3>Scale & Dominate</h3>
+        <p>Winning campaigns get scaled aggressively while protecting ROAS. Weekly performance reports with zero jargon — just revenue numbers and what we're doing next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- ═══════════
